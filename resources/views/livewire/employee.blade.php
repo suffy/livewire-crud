@@ -64,18 +64,25 @@
                 </tr>
             </thead>
             <tbody>
+
+                @foreach ($dataEmployees as $key => $value)
+                    
+
                 <tr>
-                    <td>1</td>
-                    <td>Muhammad</td>
-                    <td>muhammad@gmail.com</td>
-                    <td>Yogyakarta</td>
+                    <td>{{ $dataEmployees->firstItem() + $key }}</td>
+                    <td>{{ $value->nama }}</td>
+                    <td>{{ $value->email }}</td>
+                    <td>{{ $value->alamat }}</td>
                     <td>
                         <a href="" class="btn btn-warning btn-sm">Edit</a>
                         <a href="" class="btn btn-danger btn-sm">Del</a>
                     </td>
                 </tr>
+                
+                @endforeach
             </tbody>
         </table>
+        {{ $dataEmployees->links() }}
 
     </div>
     <!-- AKHIR DATA -->

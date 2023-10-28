@@ -4,9 +4,13 @@ namespace App\Livewire;
 
 use App\Models\Employee as ModelsEmployee;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Employee extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $nama;
     public $email;
     public $alamat;
@@ -31,6 +35,7 @@ class Employee extends Component
 
     public function render()
     {
-        return view('livewire.employee');
+        $data = ModelsEmployee::orderBy('nama','asc')->paginate(2);
+        return view('livewire.employee', ['dataEmployees' => $data]);
     }
 }
