@@ -18,6 +18,8 @@ class Employee extends Component
     public $employee_id;
     public $katakunci;
     public $employee_selected_id = [];
+    public $sortColumn = 'nama';
+    public $sortDirection = 'asc';
 
     public function store()
     {
@@ -107,16 +109,21 @@ class Employee extends Component
         }
     }
 
+    public function sort($columnName)
+    {
+        $this->sortColumn = $columnName;
+        $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+    }
+
     public function render()
     {
-
         if ($this->katakunci != null) {
             $data = ModelsEmployee::where('nama','like','%'.$this->katakunci.'%')
             ->orWhere('email','like','%'.$this->katakunci.'%')
             ->orWhere('alamat','like','%'.$this->katakunci.'%')
-            ->orderBy('nama','asc')->paginate(2);
+            ->orderBy($this->sortColumn, $this->sortDirection)->paginate(3);
         }else{
-            $data = ModelsEmployee::orderBy('nama','asc')->paginate(2);
+            $data = ModelsEmployee::orderBy($this->sortColumn, $this->sortDirection)->paginate(3);
         }
 
         

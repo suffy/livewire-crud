@@ -69,14 +69,14 @@
             
         @endif
 
-        <table class="table table-striped">
+        <table class="table table-striped table-sortable">
             <thead>
                 <tr>
                     <th></th>
                     <th class="col-md-1">No</th>
-                    <th class="col-md-4">Nama</th>
-                    <th class="col-md-3">Email</th>
-                    <th class="col-md-2">Alamat</th>
+                    <th class="col-md-4 sort @if($sortColumn == 'nama') {{ $sortDirection }}  @endif" wire:click="sort('nama')">Nama</th>
+                    <th class="col-md-3 sort @if($sortColumn == 'email') {{ $sortDirection }}  @endif" wire:click="sort('email')">Email</th>
+                    <th class="col-md-2 sort @if($sortColumn == 'alamat') {{ $sortDirection }}  @endif" wire:click="sort('alamat')">Alamat</th>
                     <th class="col-md-2">Aksi</th>
                 </tr>
             </thead>
