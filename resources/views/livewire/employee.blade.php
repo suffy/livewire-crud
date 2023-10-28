@@ -60,6 +60,9 @@
     <!-- START DATA -->
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h1>Data Pegawai</h1>
+        <div class="pb-3 pt-3">
+            <input type="text" class="form-control mb-3 w-25" placeholder="search..." wire:model.live="katakunci">
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -73,8 +76,6 @@
             <tbody>
 
                 @foreach ($dataEmployees as $key => $value)
-                    
-
                 <tr>
                     <td>{{ $dataEmployees->firstItem() + $key }}</td>
                     <td>{{ $value->nama }}</td>
